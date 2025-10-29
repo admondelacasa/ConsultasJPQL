@@ -22,9 +22,9 @@ public class Main {
             UnidadMedida unidadPote = UnidadMedida.builder().denominacion("Pote").build();
 
             em.getTransaction().begin();
-            em.persist(unidadKg);
-            em.persist(unidadLt);
-            em.persist(unidadPote);
+            em.merge(unidadKg);
+            em.merge(unidadLt);
+            em.merge(unidadPote);
             em.getTransaction().commit();
 
             // === CATEGORÍAS ===
@@ -33,9 +33,9 @@ public class Main {
             Categoria catAlmacen = Categoria.builder().denominacion("Almacén").esInsumo(true).build();
 
             em.getTransaction().begin();
-            em.persist(catFrutas);
-            em.persist(catPostres);
-            em.persist(catAlmacen);
+            em.merge(catFrutas);
+            em.merge(catPostres);
+            em.merge(catAlmacen);
             em.getTransaction().commit();
 
             // === ARTÍCULOS INSUMO ===
@@ -106,12 +106,12 @@ public class Main {
                     .build();
 
             em.getTransaction().begin();
-            em.persist(manzana);
-            em.persist(pera);
-            em.persist(naranja);
-            em.persist(azucar);
-            em.persist(banana);
-            em.persist(leche);
+            em.merge(manzana);
+            em.merge(pera);
+            em.merge(naranja);
+            em.merge(azucar);
+            em.merge(banana);
+            em.merge(leche);
             em.getTransaction().commit();
 
             // === RELACIONES CON CATEGORÍAS ===
@@ -186,9 +186,9 @@ public class Main {
             catPostres.getArticulos().add(jugoNaranja);
 
             em.getTransaction().begin();
-            em.persist(ensaladaFrutas);
-            em.persist(batidoBanana);
-            em.persist(jugoNaranja);
+            em.merge(ensaladaFrutas);
+            em.merge(batidoBanana);
+            em.merge(jugoNaranja);
             em.merge(catPostres);
             em.getTransaction().commit();
 
@@ -197,9 +197,9 @@ public class Main {
             Cliente c2 = Cliente.builder().cuit(FuncionApp.generateRandomCUIT()).razonSocial("María Solís").build();
             Cliente c3 = Cliente.builder().cuit(FuncionApp.generateRandomCUIT()).razonSocial("Pedro Villa").build();
             em.getTransaction().begin();
-            em.persist(c1);
-            em.persist(c2);
-            em.persist(c3);
+            em.merge(c1);
+            em.merge(c2);
+            em.merge(c3);
             em.getTransaction().commit();
 
             // === FACTURAS ===
@@ -261,10 +261,10 @@ public class Main {
             factura4.addDetalleFactura(f11);
             factura4.calcularTotal();
             em.getTransaction().begin();
-            em.persist(factura1);
-            em.persist(factura2);
-            em.persist(factura3);
-            em.persist(factura4);
+            em.merge(factura1);
+            em.merge(factura2);
+            em.merge(factura3);
+            em.merge(factura4);
             em.getTransaction().commit();
 
             em.close();
